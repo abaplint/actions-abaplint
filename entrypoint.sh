@@ -1,2 +1,2 @@
 #!/bin/sh
-npm install abaplint
+npm install abaplint -g
