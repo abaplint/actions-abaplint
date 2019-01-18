@@ -3,7 +3,7 @@ const fs = require('fs');
 
 async function run() {
   
-  const issues = JSON.parse(fs.readSync("/result.json", "utf-8"));
+  const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
   console.dir(issues);
   
   octokit.authenticate({
