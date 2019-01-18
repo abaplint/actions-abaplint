@@ -39,7 +39,7 @@ async function run() {
     repo: repo[1], 
     name: "results",
     status: "completed",
-    conclusion: "success",
+    conclusion: annotations.length === 0 ? "success" : "failure",
     output: {title: "Summary", summary: "Summary", annotations},
     completed_at: new Date().toISOString(),
     head_sha: process.env.GITHUB_SHA});
