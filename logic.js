@@ -5,7 +5,6 @@ function buildAnnotations() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
   const annotations = [];
   
-  let count = 0;
   for(let issue of issues) {
     annotations.push({
       path: issue.file,
@@ -14,10 +13,8 @@ function buildAnnotations() {
       title: issue.description,
       annotation_level: "failure",
       message: issue.key});
-    count = count + 1;
-    if (count === 50) {
-// only 50 annotations allowed, see https://developer.github.com/v3/checks/runs/
-      break;
+    if (annotations.length === 50) {
+      break; // only 50 annotations allowed, see https://developer.github.com/v3/checks/runs/
     }
   }    
   
@@ -25,7 +22,6 @@ function buildAnnotations() {
 }  
 
 async function run() {
-  
   const annotations = buildAnnotations();  
   
   octokit.authenticate({
