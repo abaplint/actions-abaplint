@@ -3,6 +3,7 @@ set -x
 npm install abaplint -g
 pwd
 ls -l
+abaplint --version
 abaplint "src/**/*.*" -f json > /result.json
 ls ../
 ls /
