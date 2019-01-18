@@ -14,6 +14,7 @@ async function run() {
     name: "foobar",
     status: "completed",
     conclusion: "success",
+    completed_at: new Date().toISOString(),
     head_sha: process.env.GITHUB_SHA});
 }
 
