@@ -8,10 +8,12 @@ async function run() {
     token: process.env.GITHUB_TOKEN,
   });
   
+  const repo = process.env.GITHUB_REPOSITORY.split("/");
+  
   const create = await octokit.checks.createSuite({
-    owner: "larshp", 
-    repo: "actions", 
-    head_sha: "sdfsd"});
+    owner: repo[0], 
+    repo: repo[1], 
+    head_sha: process.env.GITHUB_SHA});
 }
 
 run().then(text => {
