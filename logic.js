@@ -1,8 +1,6 @@
 const octokit = require('@octokit/rest')();
 
 async function run() {
-  console.log("hello " + process.env.GITHUB_TOKEN);
-
   octokit.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
@@ -14,6 +12,8 @@ async function run() {
     owner: repo[0], 
     repo: repo[1], 
     name: "foobar",
+    status: "completed",
+    conclusion: "success",
     head_sha: process.env.GITHUB_SHA});
 }
 
