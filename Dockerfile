@@ -9,4 +9,5 @@ LABEL "com.github.actions.icon"="cloud-drizzle"
 LABEL "com.github.actions.color"="blue"
 
 ADD entrypoint.sh /entrypoint.sh
+ADD logic.js /logic.js
 ENTRYPOINT ["/entrypoint.sh"]
