@@ -1,3 +1,4 @@
+const octokit = require('@octokit/rest')();
 
 async function run() {
   console.log("hello");
@@ -12,5 +13,5 @@ run().then(text => {
   process.exit();
 }).catch(err => {
   console.dir(err);
-  process.exit();
+  process.exit(1);
 });
