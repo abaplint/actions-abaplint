@@ -26,13 +26,14 @@ function buildAnnotations() {
 
 async function run() {
   
+  const annotations = buildAnnotations();  
+  
   octokit.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
   });
   
   const repo = process.env.GITHUB_REPOSITORY.split("/");
-  const annotations = buildAnnotations();
   
   const create = await octokit.checks.create({
     owner: repo[0], 
