@@ -11,7 +11,7 @@ async function run() {
   const create = await octokit.checks.create({
     owner: repo[0], 
     repo: repo[1], 
-    name: "foobar",
+    name: "results",
     status: "completed",
     conclusion: "success",
     completed_at: new Date().toISOString(),
