@@ -1,7 +1,7 @@
 #!/bin/sh
 set -x
 npm install abaplint -g
-npm install @octokit/rest -g
+npm install @octokit/rest@16.10.0 -g
 pwd
 ls -l
 abaplint "src/**/*.*" -f json > /result.json
