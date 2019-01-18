@@ -1,6 +1,11 @@
 const octokit = require('@octokit/rest')();
+const fs = require('fs');
 
 async function run() {
+  
+  const issues = JSON.parse(fs.readSync("/result.json", "utf-8"));
+  console.dir(issues);
+  
   octokit.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
