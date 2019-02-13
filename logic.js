@@ -19,10 +19,16 @@ function buildAnnotations() {
   }    
   
   return annotations;
-}  
+}
+
+function buildSummary() {
+  const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
+  return issues.length + " issues found(first 50 shown)";
+}
 
 async function run() {
   const annotations = buildAnnotations();  
+  const summary = buildSummary();  
   
   octokit.authenticate({
     type: 'token',
@@ -37,7 +43,7 @@ async function run() {
     name: "results",
     status: "completed",
     conclusion: annotations.length === 0 ? "success" : "failure",
-    output: {title: "Summary", summary: "Summary", annotations},
+    output: {title: "Summary", summary, annotations},
     completed_at: new Date().toISOString(),
     head_sha: process.env.GITHUB_SHA});
 }
