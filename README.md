@@ -15,3 +15,17 @@ action "action, on pull_request" {
   secrets = ["GITHUB_TOKEN"]
 }
 ```
+
+Or on push,
+
+```
+workflow "Workflow, On Push" {
+  on = "push"
+  resolves = ["abaplint/actions-abaplint@master"]
+}
+
+action "abaplint/actions-abaplint@master" {
+  uses = "abaplint/actions-abaplint@master"
+  secrets = ["GITHUB_TOKEN"]
+}
+```
