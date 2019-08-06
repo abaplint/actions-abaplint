@@ -1,4 +1,4 @@
-FROM node:lts-slim
+FROM node:lts
 
 LABEL "version"="0.1.0"
 LABEL "repository"="https://github.com/abaplint/actions-abaplint"
