@@ -1,4 +1,4 @@
-name: abaplint
+name: abaplint Action
 description: Lint ABAP code
 author: abaplint
 branding:
