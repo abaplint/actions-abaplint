@@ -1,0 +1,9 @@
+name: abaplint
+description: Lint ABAP code
+author: abaplint
+branding:
+  color: blue
+  icon: cloud-drizzle
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

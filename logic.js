@@ -29,7 +29,7 @@ function buildSummary() {
 async function run() {
   const annotations = buildAnnotations();  
   const summary = buildSummary();  
-  
+    
   octokit.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
