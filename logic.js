@@ -7,7 +7,7 @@ function buildAnnotations() {
   
   for(let issue of issues) {
     annotations.push({
-      path: issue.file,
+      path: issue.file.substring(2),
       start_line: issue.start.row,
       end_line: issue.end.row,
       title: issue.description,
