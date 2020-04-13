@@ -1,10 +1,11 @@
-const octokit = require('@octokit/rest')();
+const childProcess = require("child_process");
 const fs = require('fs');
+const octokit = require('@octokit/rest')();
 
 function buildAnnotations() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
   const annotations = [];
-  
+
   for(let issue of issues) {
     annotations.push({
       path: issue.file.substring(2),
@@ -16,30 +17,36 @@ function buildAnnotations() {
     if (annotations.length === 50) {
       break; // only 50 annotations allowed, see https://developer.github.com/v3/checks/runs/
     }
-  }    
-  
+  }
+
   return annotations;
 }
 
 function buildSummary() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
-  return issues.length + " issues found(first 50 shown)";
+
+  const actual = childProcess.execSync(`abaplint --version`).toString();
+
+  const first = issues.length > 50 ? "(first 50 shown)" : "";
+  return issues.length + " issues found"+ first + "\n\n" +
+    "Installed @abaplint/cli@" + process.env.INPUT_VERSION + "\n\n" +
+    "Actual " + actual;
 }
 
 async function run() {
-  const annotations = buildAnnotations();  
-  const summary = buildSummary();  
-    
+  const annotations = buildAnnotations();
+  const summary = buildSummary();
+
   octokit.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
   });
-  
+
   const repo = process.env.GITHUB_REPOSITORY.split("/");
-  
+
   const create = await octokit.checks.create({
-    owner: repo[0], 
-    repo: repo[1], 
+    owner: repo[0],
+    repo: repo[1],
     name: "results",
     status: "completed",
     conclusion: annotations.length === 0 ? "success" : "failure",
