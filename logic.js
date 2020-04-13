@@ -40,7 +40,7 @@ async function run() {
   const create = await octokit.checks.create({
     owner: repo[0],
     repo: repo[1],
-    name: "moo" + process.env.GITHUB_ACTION,
+    name: "moo" + process.env.GITHUB_WORKFLOW,
     status: "completed",
     conclusion: annotations.length === 0 ? "success" : "failure",
     output: {title: "Summary", summary, annotations},
