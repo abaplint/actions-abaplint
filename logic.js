@@ -1,5 +1,6 @@
-const octokit = require('@octokit/rest')();
+const childProcess = require("child_process");
 const fs = require('fs');
+const octokit = require('@octokit/rest')();
 
 function buildAnnotations() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
