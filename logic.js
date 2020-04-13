@@ -4,7 +4,7 @@ const fs = require('fs');
 function buildAnnotations() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
   const annotations = [];
-  
+
   for(let issue of issues) {
     annotations.push({
       path: issue.file.substring(2),
@@ -16,8 +16,8 @@ function buildAnnotations() {
     if (annotations.length === 50) {
       break; // only 50 annotations allowed, see https://developer.github.com/v3/checks/runs/
     }
-  }    
-  
+  }
+
   return annotations;
 }
 
@@ -27,20 +27,20 @@ function buildSummary() {
 }
 
 async function run() {
-  const annotations = buildAnnotations();  
-  const summary = buildSummary();  
-    
+  const annotations = buildAnnotations();
+  const summary = buildSummary();
+
   octokit.authenticate({
     type: 'token',
     token: process.env.GITHUB_TOKEN,
   });
-  
+
   const repo = process.env.GITHUB_REPOSITORY.split("/");
-  
+
   const create = await octokit.checks.create({
-    owner: repo[0], 
-    repo: repo[1], 
-    name: "results",
+    owner: repo[0],
+    repo: repo[1],
+    name: "results " + process.env.GITHUB_WORKFLOW,
     status: "completed",
     conclusion: annotations.length === 0 ? "success" : "failure",
     output: {title: "Summary", summary, annotations},
