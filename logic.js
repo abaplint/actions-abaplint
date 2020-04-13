@@ -23,7 +23,7 @@ function buildAnnotations() {
 
 function buildSummary() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
-  return issues.length + " issues found(first 50 shown)";
+  return issues.length + " issues found(first 50 shown), @abaplint/cli@" + process.env.INPUT_VERSION;
 }
 
 async function run() {
@@ -40,7 +40,7 @@ async function run() {
   const create = await octokit.checks.create({
     owner: repo[0],
     repo: repo[1],
-    name: "build",
+    name: "results",
     status: "completed",
     conclusion: annotations.length === 0 ? "success" : "failure",
     output: {title: "Summary", summary, annotations},

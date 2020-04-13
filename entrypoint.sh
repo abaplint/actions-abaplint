@@ -1,4 +1,5 @@
 #!/bin/sh
+echo $INPUT_VERSION
 npm install @abaplint/cli -g
 abaplint -f total --outformat json --outfile /result.json
 cd /

@@ -7,3 +7,8 @@ branding:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+inputs:
+  version:
+    description: 'abaplint version'
+    required: false
+    default: 'latest'
