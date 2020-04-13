@@ -23,8 +23,13 @@ function buildAnnotations() {
 
 function buildSummary() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
+
+  const actual = childProcess.execSync(`abaplint --version`).toString();
+
   const first = issues.length > 50 ? "(first 50 shown)" : "";
-  return issues.length + " issues found"+ first + "\n\n@abaplint/cli@" + process.env.INPUT_VERSION;
+  return issues.length + " issues found"+ first + "\n\n" +
+    "Installed @abaplint/cli@" + process.env.INPUT_VERSION + "\n\n" +
+    "Actual " + actual;
 }
 
 async function run() {
