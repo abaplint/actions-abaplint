@@ -23,7 +23,8 @@ function buildAnnotations() {
 
 function buildSummary() {
   const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
-  return issues.length + " issues found(first 50 shown), @abaplint/cli@" + process.env.INPUT_VERSION;
+  const first = issues.length > 50 ? "(first 50 shown)" : "";
+  return issues.length + " issues found"+ first + "\n\n@abaplint/cli@" + process.env.INPUT_VERSION;
 }
 
 async function run() {
