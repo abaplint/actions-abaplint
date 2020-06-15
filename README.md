@@ -26,3 +26,9 @@ jobs:
 ```
 
 The GITHUB_TOKEN is used to push back the results via the [Checks API](https://developer.github.com/v3/checks/)
+
+A specific version can be choosen by setting the `version` attribute, if not set, `@abaplint/cli@latest` will be used
+```
+      with:
+        version: '2.36.5' 
+```        
