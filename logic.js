@@ -3,7 +3,9 @@ const fs = require('fs');
 const octokit = require('@octokit/rest')();
 
 function buildAnnotations() {
-  const issues = JSON.parse(fs.readFileSync("/result.json", "utf-8"));
+  const val = fs.readFileSync("/result.json", "utf-8");
+  console.dir(val);
+  const issues = JSON.parse(val);
   const annotations = [];
 
   for(let issue of issues) {
