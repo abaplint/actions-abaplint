@@ -1,6 +1,8 @@
 const childProcess = require("child_process");
 const fs = require('fs');
-const octokit = require('@octokit/rest')();
+const octokit = require('@octokit/rest')({
+    baseUrl: process.env.GITHUB_API_URL,
+});
 
 function buildAnnotations() {
   const val = fs.readFileSync("/result.json", "utf-8");
