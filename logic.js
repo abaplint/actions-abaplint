@@ -34,7 +34,8 @@ function buildSummary() {
   const first = issues.length > 50 ? "(first 50 shown)" : "";
   return issues.length + " issues found"+ first + "\n\n" +
     "Installed @abaplint/cli@" + process.env.INPUT_VERSION + "\n\n" +
-    "Actual " + actual;
+    "Actual " + actual + "\n\n" +
+    "For additional features, faster feedback, and support use [abaplint.app](https://abaplint.app)";
 }
 
 async function run() {
